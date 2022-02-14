@@ -9,43 +9,28 @@ import { useState, useEffect } from 'react';
 
 
 function HandleButtonPress(props) {
+
   if (props.buttonText === "Start") {
     props.setButtonText("Stop")
-    props.setButtonColor("#FF4136")
+    props.setButtonColor("#Black")
     props.setSelecting(true)
   }
   if (props.buttonText === "Stop") {
     props.setButtonText("Start")
-    props.setButtonColor("#0557FF")
+    props.setButtonColor("#Black")
     props.setSelecting(false)
   }
 }
 
 function Picker(props) {
 
-  const [selecting, setSelecting] = useState(false)
   const [randomText, setRandomText] = useState("?")
-
-  const [buttonColor, setButtonColor] = useState("#0557FF")
-  const [buttonText, setButtonText] = useState("Start")
-
   const [index, setIndex] = useState(0)
-
-  const intervalDuration = 100
-
-  const buttonStyle = {
-    "border": 0,
-    "background-color": buttonColor,
-    "width": "200px",
-    "color": "#D8D8D8",
-    "border-radius": "30px",
-    "font-size": "30px"
-  }
 
   // Running the timer
   useEffect(() => {
     let interval = null
-    if (selecting) {
+    if (props.data.selecting) {
       interval = setInterval(() => {
         if (index < scenarios[props.data.type].options.length - 1) {
           let newIndex = index + 1
@@ -56,30 +41,75 @@ function Picker(props) {
           setIndex(0)
           setRandomText(scenarios[props.data.type].options[0])
         }
-      }, intervalDuration);
-    } else if (!selecting) {
-      clearInterval(interval)
+      }, props.data.interval);
+    } else if (!props.data.selecting) {
+      clearInterval(props.data.interval)
     }
-
-
-
     //Clear up
     return () => {
       clearInterval(interval)
     }
-  }, [selecting, index])
-
-
+  }, [props.data.selecting, index])
 
   return (
-    <div className='sub-page-div'>
-      <div className='sub-page-text'>
-        <h2>{scenarios[props.data.type].label}</h2>
+    <div>
+      <div >
+        <div className='question-text-div'>
+          <p className='question-text'>{scenarios[props.data.type].label}</p>
+        </div>
+      </div >
+
+      <div className='sub-page-div'>
+        <div className='response-text-div'>
+          <p className='response-text'>{randomText}</p>
+        </div>
+      </div >
+
+    </div>
+  )
+}
+
+
+function App() {
+
+  const [selecting, setSelecting] = useState(false)
+  const [scenarioSelecting, setScenarioSelecting] = useState(false)
+  const [outcomeSelecting, setOutcomeSelecting] = useState(false)
+
+  const [buttonColor, setButtonColor] = useState("#0557FF")
+  const [buttonText, setButtonText] = useState("Start")
+  const buttonStyle = {
+    "border": 0,
+    "background-color": { buttonColor },
+    "width": "200px",
+    "color": "#D8D8D8",
+    "border-radius": "25px",
+    "font-size": "25px"
+  }
+
+  return (
+    <>
+      <div className='app-div'>
+        <h1> Sample Data Hazards Scenario Selector</h1>
+        <div className='break'></div>
+        <Picker data={{
+          "type": "scenario",
+          "selecting": selecting,
+          "setSelecting": setSelecting,
+          "interval": 200
+        }} />
+        <Picker data={{
+          "type": "outcome",
+          "selecting": selecting,
+          "setSelecting": setSelecting,
+          "interval": 100
+
+        }} />
+
       </div>
-      <div className='sub-page-text'>
-        <h2>{randomText}</h2>
-      </div>
-      <div className='sub-page-button'>
+
+      <div className='app-div'>
+
         <Button style={buttonStyle}
           onClick={(event) => {
             HandleButtonPress({
@@ -89,24 +119,11 @@ function Picker(props) {
               pressed: true,
               setSelecting: setSelecting,
               selecting: selecting,
-              index: index,
-              setIndex: setIndex
+
             })
           }}>{buttonText}</Button>
       </div>
-    </div >
-  )
-}
-
-
-function App() {
-  return (
-    <div className='app-div'>
-      <h1> Sample Data Hazards Scenario Selector</h1>
-      <div className='break'></div>
-      <Picker data={{ "type": "scenario" }} />
-      <Picker data={{ "type": "outcome" }} />
-    </div>
+    </>
   );
 }
 
