@@ -53,13 +53,13 @@ function Picker(props) {
 
   return (
     <div>
-      <div >
+      <div className='sub-page-question-div'>
         <div className='question-text-div'>
           <p className='question-text'>{scenarios[props.data.type].label}</p>
         </div>
       </div >
 
-      <div className='sub-page-div'>
+      <div className='sub-page-response-div'>
         <div className='response-text-div'>
           <p className='response-text'>{randomText}</p>
         </div>
@@ -84,24 +84,23 @@ function App() {
     "width": "200px",
     "color": "#D8D8D8",
     "border-radius": "25px",
+    "margin-top": "1em",
     "font-size": "25px"
   }
 
   return (
     <>
       <div className='app-div'>
-        <h1> Sample Data Hazards Scenario Selector</h1>
+        <h1> Data Hazards Scenario Selector </h1>
         <div className='break'></div>
         <Picker data={{
           "type": "scenario",
-          "selecting": selecting,
-          "setSelecting": setSelecting,
+          "selecting": scenarioSelecting,
           "interval": 200
         }} />
         <Picker data={{
           "type": "outcome",
-          "selecting": selecting,
-          "setSelecting": setSelecting,
+          "selecting": outcomeSelecting,
           "interval": 100
 
         }} />
@@ -112,14 +111,18 @@ function App() {
 
         <Button style={buttonStyle}
           onClick={(event) => {
+
+            setScenarioSelecting(!scenarioSelecting)
+            const outcomeTimeout = setTimeout(() => {
+              setOutcomeSelecting(!outcomeSelecting)
+
+            }, 500)
+
+
             HandleButtonPress({
               setButtonColor: setButtonColor,
               buttonText: buttonText,
               setButtonText: setButtonText,
-              pressed: true,
-              setSelecting: setSelecting,
-              selecting: selecting,
-
             })
           }}>{buttonText}</Button>
       </div>
