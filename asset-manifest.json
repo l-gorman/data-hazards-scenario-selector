@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/data-hazards-scenario-selector/static/css/main.8aa81203.css",
-    "main.js": "/data-hazards-scenario-selector/static/js/main.ce9e07c4.js",
+    "main.css": "/data-hazards-scenario-selector/static/css/main.fc813cb6.css",
+    "main.js": "/data-hazards-scenario-selector/static/js/main.f0eb972f.js",
     "static/js/787.e44b4801.chunk.js": "/data-hazards-scenario-selector/static/js/787.e44b4801.chunk.js",
     "index.html": "/data-hazards-scenario-selector/index.html",
-    "main.8aa81203.css.map": "/data-hazards-scenario-selector/static/css/main.8aa81203.css.map",
-    "main.ce9e07c4.js.map": "/data-hazards-scenario-selector/static/js/main.ce9e07c4.js.map",
+    "main.fc813cb6.css.map": "/data-hazards-scenario-selector/static/css/main.fc813cb6.css.map",
+    "main.f0eb972f.js.map": "/data-hazards-scenario-selector/static/js/main.f0eb972f.js.map",
     "787.e44b4801.chunk.js.map": "/data-hazards-scenario-selector/static/js/787.e44b4801.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8aa81203.css",
-    "static/js/main.ce9e07c4.js"
+    "static/css/main.fc813cb6.css",
+    "static/js/main.f0eb972f.js"
   ]
 }
