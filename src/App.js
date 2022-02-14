@@ -9,16 +9,14 @@ import { useState, useEffect } from 'react';
 
 
 function HandleButtonPress(props) {
-
+  console.log(props.buttonText)
   if (props.buttonText === "Start") {
     props.setButtonText("Stop")
-    props.setButtonColor("#Black")
-    props.setSelecting(true)
+    props.setButtonColor("#FF0000")
   }
   if (props.buttonText === "Stop") {
     props.setButtonText("Start")
-    props.setButtonColor("#Black")
-    props.setSelecting(false)
+    props.setButtonColor("#0557FF")
   }
 }
 
@@ -69,24 +67,34 @@ function Picker(props) {
   )
 }
 
-
 function App() {
 
-  const [selecting, setSelecting] = useState(false)
   const [scenarioSelecting, setScenarioSelecting] = useState(false)
   const [outcomeSelecting, setOutcomeSelecting] = useState(false)
 
   const [buttonColor, setButtonColor] = useState("#0557FF")
   const [buttonText, setButtonText] = useState("Start")
-  const buttonStyle = {
+  const [buttonStyle, setButtonStyle] = useState({
     "border": 0,
-    "background-color": { buttonColor },
+    "background-color": "#0557FF",
     "width": "200px",
-    "color": "#D8D8D8",
     "border-radius": "25px",
     "margin-top": "1em",
     "font-size": "25px"
-  }
+  })
+
+  useEffect(() => {
+    console.log(buttonStyle)
+    setButtonStyle({
+      "border": 0,
+      "background-color": buttonColor,
+      "width": "200px",
+      "border-radius": "25px",
+      "margin-top": "1em",
+      "font-size": "25px"
+    })
+
+  }, [buttonColor])
 
   return (
     <>
@@ -111,13 +119,10 @@ function App() {
 
         <Button style={buttonStyle}
           onClick={(event) => {
-
             setScenarioSelecting(!scenarioSelecting)
             const outcomeTimeout = setTimeout(() => {
               setOutcomeSelecting(!outcomeSelecting)
-
             }, 500)
-
 
             HandleButtonPress({
               setButtonColor: setButtonColor,
