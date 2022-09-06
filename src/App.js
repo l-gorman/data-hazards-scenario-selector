@@ -51,16 +51,12 @@ function Picker(props) {
 
   return (
     <div>
-      <div className='sub-page-question-div'>
-        <div className='question-text-div'>
+      <div className='question-div'>
           <p className='question-text'>{scenarios[props.data.type].label}</p>
-        </div>
       </div >
 
-      <div className='sub-page-response-div'>
-        <div className='response-text-div'>
+      <div className='response-div'>
           <p className='response-text'>{randomText}</p>
-        </div>
       </div >
 
     </div>
@@ -99,8 +95,12 @@ function App() {
   return (
     <>
       <div className='app-div'>
-        <h1> Data Hazards Scenario Selector </h1>
+        {/* <h1> Data Hazards Scenario Selector </h1> */}
         <div className='break'></div>
+
+
+        <div className='all-content-div'>
+          <div className='div-both-pickers'>
         <Picker data={{
           "type": "scenario",
           "selecting": scenarioSelecting,
@@ -112,12 +112,10 @@ function App() {
           "interval": 100
 
         }} />
+        </div>
 
-      </div>
-
-      <div className='app-div'>
-
-        <Button style={buttonStyle}
+        <div className='button-div'>
+          <Button style={buttonStyle}
           onClick={(event) => {
             setScenarioSelecting(!scenarioSelecting)
             const outcomeTimeout = setTimeout(() => {
@@ -130,7 +128,13 @@ function App() {
               setButtonText: setButtonText,
             })
           }}>{buttonText}</Button>
+          </div>
+          </div>
+
       </div>
+
+
+      
     </>
   );
 }
