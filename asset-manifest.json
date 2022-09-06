@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/data-hazards-scenario-selector/static/css/main.b5647d93.css",
+    "main.js": "/data-hazards-scenario-selector/static/js/main.818fdec4.js",
+    "static/js/787.e44b4801.chunk.js": "/data-hazards-scenario-selector/static/js/787.e44b4801.chunk.js",
+    "index.html": "/data-hazards-scenario-selector/index.html",
+    "main.b5647d93.css.map": "/data-hazards-scenario-selector/static/css/main.b5647d93.css.map",
+    "main.818fdec4.js.map": "/data-hazards-scenario-selector/static/js/main.818fdec4.js.map",
+    "787.e44b4801.chunk.js.map": "/data-hazards-scenario-selector/static/js/787.e44b4801.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b5647d93.css",
+    "static/js/main.818fdec4.js"
+  ]
+}
